@@ -1,0 +1,8 @@
+name: "My CodeQL config"
+
+disable-default-queries: true
+
+queries:
+  - uses: ./.github/csharp/test.ql
+  - uses: ./.github/cpp/test.ql
+  - uses: ./.github/javascript/test.ql
