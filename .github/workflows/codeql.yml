@@ -43,7 +43,7 @@ jobs:
         git config --global user.name "Octokit"
         git fetch upstream || exit 1
         git rebase ${{ fromJSON(needs.compare.outputs.result).sha }} || exit 1
-        git push || exit 1
+        git push --force || exit 1
 
   analyze:
     needs: compare
