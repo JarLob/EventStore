@@ -51,7 +51,7 @@ jobs:
     if: fromJSON(needs.compare.outputs.result).behind_by > 0 || github.event.inputs.force
 
     strategy:
-      fail-fast: false
+      fail-fast: true
       matrix:
         # Supported options are ['csharp', 'cpp', 'go', 'java', 'javascript', 'python']
         # https://docs.github.com/en/github/finding-security-vulnerabilities-and-errors-in-your-code/configuring-code-scanning#overriding-automatic-language-detection
@@ -104,8 +104,8 @@ jobs:
       shell: pwsh
       run: Get-ChildItem -Path "${{steps.runner-temp.outputs.RUNNER_TEMP}}/codeql_databases/${{ matrix.language }}" -Exclude log | Compress-Archive -DestinationPath "${{steps.runner-temp.outputs.RUNNER_TEMP}}/${{ matrix.language }}.zip"
 
-    - run: npm install @azure/storage-blob
-    - run: npm install got
+    - run: npm install @azure/storage-blob@12.8.0
+    - run: npm install got@11.8.3
 
     - uses: actions/github-script@v3.1.0
       with:
